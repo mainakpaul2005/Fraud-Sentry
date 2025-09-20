@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Fraud Sentry - Feedback</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <style>
+        /* Define the custom variable for lighter teal */
+
+        html {
+            font-size: 16px;
+        }
+
+        .feedback-container {
+            width: 90%;
+            max-width: 500px;
+            margin: 6rem auto 3rem;
+            padding: 2rem;
+            background-color: rgba(26, 26, 26, 0.8); /* Dark semi-transparent background */
+            border-radius: 10px;
+            box-shadow: 0 0 15px rgba(0,0,0, 0.5);
+            color: white;
+            text-align: center;
+            backdrop-filter: blur(30px); /* Applying 30px blur effect */
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        .feedback-container:hover{
+            background-color: rgba(26, 26, 26, 0.8);
+            transform: translateY(-5px) scale(1.04);
+            transition: all 0.3s;
+        }
+
+        .feedback-container h2 {
+            color: var(--teal-lighter); /* Accent color for the heading */
+            margin-bottom: 1.5rem;
+            font-size: 1.8rem;
+        }
+
+        .feedback-container form input,
+        .feedback-container form textarea,
+        .feedback-container form select {
+            width: 100%;
+            padding: 1rem;
+            margin: 0.8rem 0;
+            border: none;
+            border-radius: 5px;
+            background-color: #333;
+            color: white;
+            font-size: 1rem;
+        }
+
+        .feedback-container textarea {
+            resize: vertical;
+            min-height: 120px;
+        }
+
+        .feedback-container button {
+            width: 100%;
+            padding: 1rem;
+            background-color: var(--teal-light); /* Accent color for button */
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-weight: 600;
+            cursor: pointer;
+            margin-top: 1rem;
+            transition: background-color 0.3s ease;
+            font-size: 1rem;
+        }
+
+        .feedback-container button:hover {
+            background-color: var(--teal) /* Slightly darker teal for hover effect */
+        }
+
+        .confirmation-message {
+            margin-top: 1rem;
+            color: #00ffcc;
+            font-weight: bold;
+            font-size: 1rem;
+        }
+
+        @media (max-width: 768px) {
+            html {
+                font-size: 14px;
+            }
+
+            .feedback-container {
+                margin: 5rem auto 2rem;
+                padding: 1.5rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            html {
+                font-size: 13px;
+            }
+
+            .feedback-container {
+                margin: 4rem auto 2rem;
+                padding: 1.2rem;
+            }
+
+            .feedback-container form input,
+            .feedback-container form textarea,
+            .feedback-container form select {
+                padding: 0.7rem;
+            }
+        }
+    </style>
+</head>
+ <!-- Dark background color -->
+<body>
+<!-- Navbar -->
+<nav class="navbar">
+    <div class="navbar-logo">
+        <a href="index.html">
+            <img src="Images/logo.svg" alt="Fraud Sentry Logo" />
+        </a>
+    </div>
+
+    <ul class="navbar-links">
+        <li><a href="index.html#about-us">About Us</a></li>
+        <li><a href="index.html#crime-rates">Crime Rates</a></li>
+        <li><a href="index.html#analysis">Analysis</a></li>
+        <li><a href="index.html#current-affairs">Current Affairs</a></li>
+        <li><a href="index.html#learning-corner">Learning Corner</a></li>
+    </ul>
+</nav>
+
+<!-- Menu toggle -->
+<input type="checkbox" id="menu-toggle">
+<label for="menu-toggle" class="toggle">
+    <span class="common top_line"></span>
+    <span class="common middle_line"></span>
+    <span class="common bottom_line"></span>
+</label>
+
+<!-- Slide‑out menu -->
+<div class="slide">
+    <h1>MENU</h1>
+    <ul>
+        <li><a href="User_id.html">User ID</a></li>
+        <li><a href="hours_spent.html">Hours Spent</a></li>
+        <li><a href="crime_ratio.html">Crime Ratio</a></li>
+        <li><a href="currrent_affairs.html">Current Affairs</a></li>
+        <li><a href="help_desk.html">Help Desk</a></li>
+        <li><a href="feedback.html">Feedback</a></li>
+        <li><a href="invite_friends.html">Invite a Friend</a></li>
+        <li><a href="#" onclick="logout()">Log Out</a></li>
+
+    </ul>
+</div>
+
+<div class="feedback-container">
+    <h2>We Value Your Feedback</h2>
+    <form id="feedbackForm">
+        <input type="text" name="name" placeholder="Your Name" required />
+        <input type="email" name="email" placeholder="Your Email" required />
+        <select name="rating" required>
+            <option value="">Rate your experience</option>
+            <option value="5">⭐⭐⭐⭐⭐ Excellent</option>
+            <option value="4">⭐⭐⭐⭐ Very Good</option>
+            <option value="3">⭐⭐⭐ Good</option>
+            <option value="2">⭐⭐ Fair</option>
+            <option value="1">⭐ Poor</option>
+        </select>
+        <textarea name="message" placeholder="Your suggestions or comments..." required></textarea>
+        <button type="submit">Submit Feedback</button>
+    </form>
+    <div class="confirmation-message" id="confirmationMessage" style="display: none;">
+        Thank you for your feedback!
+    </div>
+</div>
+
+<script>
+    function toggleTheme() {
+        document.body.classList.toggle('dark-mode');
+    }
+
+    document.getElementById('feedbackForm').addEventListener('submit', function (e) {
+        e.preventDefault();
+        const confirmation = document.getElementById('confirmationMessage');
+        confirmation.style.display = 'block';
+        this.reset();
+
+        // Hide confirmation after 5 seconds
+        setTimeout(() => {
+            confirmation.style.display = 'none';
+        }, 5000);
+
+        // Optional: send to backend
+        // const formData = new FormData(this);
+        // fetch('/feedback', {
+        //     method: 'POST',
+        //     body: formData
+        // });
+    });
+</script>
+<script>
+    function logout() {
+        fetch('/api/logout', {
+            method: 'POST',
+            credentials: 'include'
+        }).then(response => {
+            if (response.ok) {
+                window.location.href = '/signin.html'; // Go to Sign In page after logout
+            } else {
+                alert('Logout failed');
+            }
+        }).catch(error => {
+            console.error('Logout error', error);
+            alert('Logout error');
+        });
+    }
+</script>
+
+
+
+</body>
+</html>

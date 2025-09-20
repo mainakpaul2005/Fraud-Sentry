@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <title>Fraud Sentry</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<!-- Navbar -->
+<nav class="navbar">
+    <div class="navbar-logo">
+        <a href="index.html">
+            <img src="Images/logo.svg" alt="Fraud Sentry Logo" />
+        </a>
+    </div>
+
+    <ul class="navbar-links">
+        <li><a href="#about-us">About Us</a></li>
+        <li><a href="#crime-rates">Crime Rates</a></li>
+        <li><a href="#analysis">Analysis</a></li>
+        <li><a href="#current-affairs">Current Affairs</a></li>
+        <li><a href="#learning-corner">Learning Corner</a></li>
+    </ul>
+</nav>
+
+<!-- Menu toggle -->
+<input type="checkbox" id="menu-toggle">
+<label for="menu-toggle" class="toggle">
+    <span class="common top_line"></span>
+    <span class="common middle_line"></span>
+    <span class="common bottom_line"></span>
+</label>
+
+<!-- Slide‑out menu -->
+<div class="slide">
+    <h1>MENU</h1>
+    <ul>
+        <li><a href="User_id.html">User ID</a></li>
+        <li><a href="hours_spent.html">Hours Spent</a></li>
+        <li><a href="crime_ratio.html">Crime Ratio</a></li>
+        <li><a href="currrent_affairs.html">Current Affairs</a></li>
+        <li><a href="help_desk.html">Help Desk</a></li>
+        <li><a href="feedback.html">Feedback</a></li>
+        <li><a href="invite_friends.html">Invite a Friend</a></li>
+        <li><a href="#" onclick="logout()">Log Out</a></li>
+
+    </ul>
+</div>
+
+
+<!-- About Us -->
+<section id="about-us" class="dashboard-section">
+    <h2>About Us</h2>
+    <p>We are committed to tracking and analyzing fraudulent activity to keep the public informed and safe.</p>
+
+    <div class="about-slider">
+        <div class="about-card active">
+            <img src="Images/about1.jpg" alt="Our Mission" class="about-img">
+            <h3>Our Mission</h3>
+            <p>Our mission is to provide clear, easy-to-understand information to help you stay safe online. We created this website to give back by sharing practical tips, real-life examples, and simple guidance you can trust. Whether you're new to the digital world or looking to strengthen your online security, we’re here to help you recognize, avoid, and defend against threats — making your internet experience safer and more confident.</p>
+        </div>
+
+        <div class="about-card">
+            <img src="Images/about3.jpeg" alt="Our Team" class="about-img">
+            <h3>Our Team</h3>
+            <p>We are a group of friends united by a common purpose — to raise awareness about digital fraud among individuals aged 40 to 70. As online services continue to grow rapidly, we noticed that many people in this age group are becoming frequent targets of scams. Through this website, we aim to share knowledge, tips, and real-world examples to help protect and empower them in navigating the digital world safely.</p>
+        </div>
+
+        <div class="about-card">
+            <img src="Images/about2.png" alt="Join Our Community" class="about-img">
+            <h3>Join Our Community</h3>
+            <p>Access your account to view personalized insights, tips, and data focused on fraud prevention. Stay informed with updates tailored to your needs, helping you recognize threats early and take proactive steps to protect yourself in today’s digital world.</p>
+            <a href="signin.html" class="sign-in-button">Sign In</a>
+        </div>
+    </div>
+
+    <div class="dot-container">
+        <span class="dot active-dot"></span>
+        <span class="dot"></span>
+        <span class="dot"></span>
+    </div>
+</section>
+
+<!-- Crime Rates -->
+<section id="crime-rates" class="dashboard-section">
+    <h2>Crime Rates</h2>
+    <p>Explore national and regional statistics on criminal activity trends.</p>
+    <div class="cards-container">
+        <div class="card">
+            <h3>Violent Crime</h3>
+            <p>Explore statistics on violent crimes including homicides, assaults, and robberies.</p>
+        </div>
+        <div class="card">
+            <h3>Property Crime</h3>
+            <p>Data on theft, burglary, and motor vehicle theft trends over the years.</p>
+        </div>
+        <div class="card">
+            <h3>Drug-Related Crime</h3>
+            <p>Find out how drug-related crimes have evolved in different regions.</p>
+        </div>
+        <div class="card">
+            <h3>Cyber Crime</h3>
+            <p>Understand trends in cybercrime, including hacking and online fraud.</p>
+        </div>
+    </div>
+</section>
+
+
+<!-- Analysis -->
+<section id="analysis" class="dashboard-section">
+    <h2>Analysis</h2>
+    <p>Detailed data analysis and insights into fraud patterns and predictions.</p>
+    <div class="analysis-container">
+        <canvas id="analysisChart"></canvas>
+    </div>
+</section>
+
+<!-- Current Affairs -->
+<section id="current-affairs" class="dashboard-section">
+    <h2>Top 5 Current Affairs</h2>
+    <p>Stay informed with the latest top five news stories related to fraud and crime prevention.</p>
+    <div id="current-affairs-grid">
+        <div class="card">
+            <h3>1. Massive UPI Fraud Network Busted</h3>
+            <p>Cybercrime units across 5 states dismantled a sophisticated UPI fraud ring siphoning over ₹27 crore. 23 individuals arrested and 157 devices seized.</p>
+        </div>
+        <div class="card">
+            <h3>2. Phishing Scam Targets Banking Customers</h3>
+            <p>12,000+ accounts breached across 7 banks. A 300% YoY spike forced two‑factor authentication rollout.</p>
+        </div>
+        <div class="card">
+            <h3>3. E-commerce Refund Fraud Syndicate Exposed</h3>
+            <p>International refund fraud caused ₹45 crore losses. 19 suspects across 4 countries arrested with Interpol’s help.</p>
+        </div>
+        <div class="card">
+            <h3>4. SIM Swap Fraud Epidemic</h3>
+            <p>175% surge in SIM swaps. Biometric KYC mandatory after 800+ metro area cases this month.</p>
+        </div>
+        <div class="card">
+            <h3>5. Fake Investment App Scam</h3>
+            <p>47 apps blacklisted after ₹120 crore stolen from 35,000 investors. Verify SEBI registration before investing.</p>
+        </div>
+        <div class="card">
+            <h3>1. Massive UPI Fraud Network Busted</h3>
+            <p>Cybercrime units across 5 states dismantled a sophisticated UPI fraud ring siphoning over ₹27 crore. 23 individuals arrested and 157 devices seized.</p>
+        </div>
+    </div>
+</section>
+
+<!-- Learning Corner -->
+<section id="learning-corner" class="dashboard-section">
+    <h2>Learning Corner</h2>
+    <p>Educational resources, guides, and best practices to help identify and prevent fraud.</p>
+    <div class="video-cards-container">
+        <!-- Video Card 1 -->
+        <div class="video-card">
+            <div class="video-thumbnail">
+                <video width="100%" height="200" controls>
+                    <source src="Videos/video1.mp4" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+            </div>
+            <h3>Understanding Phishing Scams</h3>
+            <p>Learn how to recognize phishing scams and protect yourself from falling victim to them.</p>
+        </div>
+
+        <!-- Video Card 2 -->
+        <div class="video-card">
+            <div class="video-thumbnail">
+                <video width="100%" height="200" controls>
+                    <source src="Videos/video2.mp4" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+            </div>
+            <h3>Tips for Secure Online Shopping</h3>
+            <p>Follow these tips to ensure a safe online shopping experience and avoid fraud.</p>
+        </div>
+
+        <!-- Video Card 3 -->
+        <div class="video-card">
+            <div class="video-thumbnail">
+                <video width="100%" height="200" controls>
+                    <source src="Videos/video3.mp4" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+            </div>
+            <h3>Recognizing Fake Investment Scams</h3>
+            <p>Understand the warning signs of fraudulent investment schemes and protect your money.</p>
+        </div>
+    </div>
+</section>
+
+
+
+<!-- Chart.js Script -->
+<script>
+    const ctx = document.getElementById('analysisChart').getContext('2d');
+    new Chart(ctx, {
+        type: 'bar',
+        data: {
+            labels: [
+                'Fraudulent Transactions Detected',
+                'New Patterns Identified',
+                'Risk Alerts Issued',
+                'False Positives Reduced',
+                'New Cases Investigated'
+            ],
+            datasets: [{
+                label: 'Performance (%)',
+                data: [75, 60, 85, 40, 70],
+                backgroundColor: [
+                    '#b8fff7',
+                    '#a6fef2',
+                    '#94fef0',
+                    '#82fee9',
+                    '#70fee6'
+                ],
+                borderRadius: 10
+            }]
+        },
+        options: {
+            indexAxis: 'y',
+            responsive: true,
+            maintainAspectRatio: false,
+            scales: {
+                x: {
+                    beginAtZero: true,
+                    max: 100,
+                    ticks: {
+                        color: getComputedStyle(document.documentElement).getPropertyValue('--teal-lighter').trim()
+                    }
+                },
+                y: {
+                    ticks: {
+                        font: { weight: 'bold' },
+                        color: getComputedStyle(document.documentElement).getPropertyValue('--teal-lighter').trim()
+                    }
+                }
+            },
+            plugins: {
+                tooltip: {
+                    callbacks: {
+                        label: ctx => ctx.parsed.x + '%'
+                    }
+                },
+                legend: {
+                    labels: {
+                        color: getComputedStyle(document.documentElement).getPropertyValue('--teal-lighter').trim()
+                    }
+                }
+            }
+        }
+    });
+</script>
+
+<!-- Scroll Reveal -->
+<script>
+    const obs = new IntersectionObserver(entries => {
+        entries.forEach(e => {
+            if (e.isIntersecting) {
+                e.target.classList.add('visible');
+                obs.unobserve(e.target);
+            }
+        });
+    }, { threshold: 0.1 });
+    document.querySelectorAll('.card').forEach(c => obs.observe(c));
+</script>
+
+<!-- Swipe to Open/Close Menu -->
+<script>
+    let startX = 0, endX = 0, thresh = 50;
+    document.body.addEventListener('touchstart', e => startX = e.touches[0].clientX);
+    document.body.addEventListener('touchend', e => {
+        endX = e.changedTouches[0].clientX;
+        const box = document.getElementById('menu-toggle');
+        if (startX - endX > thresh) box.checked = true;
+        else if (endX - startX > thresh) box.checked = false;
+    });
+</script>
+
+<script>
+    const aboutCards = document.querySelectorAll('.about-card');
+    const aboutDots = document.querySelectorAll('.dot');
+    let currentSlide = 0;
+    const totalSlides = aboutCards.length;
+
+    function showAboutSlide(index) {
+        aboutCards.forEach(card => card.classList.remove('active'));
+        aboutDots.forEach(dot => dot.classList.remove('active-dot'));
+        aboutCards[index].classList.add('active');
+        aboutDots[index].classList.add('active-dot');
+    }
+
+    // Auto slide every 2 seconds
+    function autoSlide() {
+        currentSlide++;
+        if (currentSlide >= totalSlides) currentSlide = 0;
+        showAboutSlide(currentSlide);
+    }
+
+    // Start auto sliding
+    let slideInterval = setInterval(autoSlide, 4000); // 2000ms = 2 seconds
+
+    // Allow manual dot click
+    aboutDots.forEach((dot, idx) => {
+        dot.addEventListener('click', () => {
+            currentSlide = idx;
+            showAboutSlide(idx);
+            clearInterval(slideInterval); // stop auto-slide on manual click
+            slideInterval = setInterval(autoSlide, 4000); // restart timer
+        });
+    });
+</script>
+<script>
+    function logout() {
+        fetch('/api/logout', {
+            method: 'POST',
+            credentials: 'include'
+        }).then(response => {
+            if (response.ok) {
+                window.location.href = '/signin.html'; // Go to Sign In page after logout
+            } else {
+                alert('Logout failed');
+            }
+        }).catch(error => {
+            console.error('Logout error', error);
+            alert('Logout error');
+        });
+    }
+</script>
+
+
+</body>
+</html>

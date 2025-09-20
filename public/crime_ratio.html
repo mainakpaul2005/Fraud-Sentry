@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Fraud Sentry - Crime Ratio</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        :root {
+            --shadow: rgba(78, 240, 227, 0.3);
+        }
+
+        html {
+            font-size: 16px;
+        }
+
+        .crime-container {
+            width: 90%;
+            max-width: 800px;
+            margin: 120px auto;
+            padding: 30px;
+            background: rgba(26, 26, 26, 0.6); /* semi-transparent dark */
+            backdrop-filter: blur(50px);
+            -webkit-backdrop-filter: blur(50px);
+            border-radius: 30px;
+            box-shadow: 0 4px 10px var(--shadow);
+            color: white;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .crime-container:hover {
+            transform: scale(1.03);
+            box-shadow: 0 8px 20px var(--shadow);
+            background: rgba(26, 26, 26, 0.7);
+        }
+
+        .crime-container h2 {
+            color: var(--teal-lighter);
+            margin-bottom: 20px;
+            font-size: 28px;
+        }
+
+        .chart-container {
+            position: relative;
+            width: 100%;
+            height: 60vh;
+            margin-top: 20px;
+        }
+
+        @media (max-width: 768px) {
+            html {
+                font-size: 14px;
+            }
+
+            .crime-container {
+                margin: 80px auto;
+                padding: 20px;
+            }
+
+            .chart-container {
+                height: 50vh;
+            }
+        }
+
+        @media (max-width: 480px) {
+            html {
+                font-size: 13px;
+            }
+
+            .crime-container {
+                margin: 40px auto;
+                padding: 15px;
+            }
+
+            .chart-container {
+                height: 45vh;
+            }
+        }
+    </style>
+
+
+</head>
+<body>
+
+<!-- Navbar -->
+<nav class="navbar">
+    <div class="navbar-logo">
+        <a href="index.html">
+            <img src="Images/logo.svg" alt="Fraud Sentry Logo" />
+        </a>
+    </div>
+
+    <ul class="navbar-links">
+        <li><a href="index.html#about-us">About Us</a></li>
+        <li><a href="index.html#crime-rates">Crime Rates</a></li>
+        <li><a href="index.html#analysis">Analysis</a></li>
+        <li><a href="index.html#current-affairs">Current Affairs</a></li>
+        <li><a href="index.html#learning-corner">Learning Corner</a></li>
+    </ul>
+</nav>
+
+<!-- Menu toggle -->
+<input type="checkbox" id="menu-toggle">
+<label for="menu-toggle" class="toggle">
+    <span class="common top_line"></span>
+    <span class="common middle_line"></span>
+    <span class="common bottom_line"></span>
+</label>
+
+<!-- Slide‑out menu -->
+<div class="slide">
+    <h1>MENU</h1>
+    <ul>
+        <li><a href="User_id.html">User ID</a></li>
+        <li><a href="hours_spent.html">Hours Spent</a></li>
+        <li><a href="crime_ratio.html">Crime Ratio</a></li>
+        <li><a href="currrent_affairs.html">Current Affairs</a></li>
+        <li><a href="help_desk.html">Help Desk</a></li>
+        <li><a href="feedback.html">Feedback</a></li>
+        <li><a href="invite_friends.html">Invite a Friend</a></li>
+        <li><a href="#">Log Out</a></li>
+    </ul>
+</div>
+
+<div class="crime-container">
+    <h2>Crime Ratio Statistics</h2>
+    <div class="chart-container">
+        <canvas id="crimeChart"></canvas>
+    </div>
+</div>
+
+<script>
+    function toggleTheme() {
+        document.body.classList.toggle('dark-mode');
+    }
+
+    // Initialize chart
+    const ctx = document.getElementById('crimeChart').getContext('2d');
+    const crimeChart = new Chart(ctx, {
+        type: 'bar',
+        data: {
+            labels: ['Cyber Fraud', 'ATM Fraud', 'UPI Fraud', 'Card Cloning', 'Identity Theft'],
+            datasets: [{
+                label: 'Crime Cases in 2024',
+                data: [320, 210, 450, 130, 180],
+                backgroundColor: [
+                    '#b8fff7', // Lighter shade
+                    '#a6fef2', // Slightly lighter
+                    '#94fef0', // Lighter still
+                    '#82fee9', // Even lighter
+                    '#70fee6'  // Softest shade
+                ],
+                borderRadius: 8
+            }]
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            scales: {
+                y: {
+                    beginAtZero: true,
+                    ticks: {
+                        color: '#fff',
+                        font: {
+                            size: window.innerWidth < 768 ? 10 : 12
+                        }
+                    },
+                    grid: {
+                        color: '#333'
+                    }
+                },
+                x: {
+                    ticks: {
+                        color: '#fff',
+                        font: {
+                            size: window.innerWidth < 768 ? 10 : 12
+                        }
+                    },
+                    grid: {
+                        color: '#333'
+                    }
+                }
+            },
+            plugins: {
+                legend: {
+                    labels: {
+                        color: '#fff',
+                        font: {
+                            size: window.innerWidth < 768 ? 10 : 12
+                        }
+                    }
+                }
+            }
+        }
+    });
+
+    // Handle window resize
+    window.addEventListener('resize', function() {
+        crimeChart.update();
+    });
+</script>
+
+
+<script>
+    function logout() {
+        fetch('/api/logout', {
+            method: 'POST',
+            credentials: 'include'
+        }).then(response => {
+            if (response.ok) {
+                window.location.href = '/signin.html'; // Go to Sign In page after logout
+            } else {
+                alert('Logout failed');
+            }
+        }).catch(error => {
+            console.error('Logout error', error);
+            alert('Logout error');
+        });
+    }
+</script>
+
+
+</body>
+</html>

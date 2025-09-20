@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Fraud Sentry - User ID</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .loading-skeleton .loading-bar {
+            display: inline-block;
+            width: 150px;
+            height: 16px;
+            background-color: #333;
+            border-radius: 4px;
+            animation: pulse 1.5s infinite ease-in-out;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 0.6; }
+            50% { opacity: 0.3; }
+        }
+        .user-id-container {
+            width: 600px;
+            height: 400px;
+            margin: 100px auto;
+            padding: 40px;
+            background: rgba(26, 26, 26, 0.7);
+            backdrop-filter: blur(50px);
+            -webkit-backdrop-filter: blur(50px);
+            border-radius: 30px;
+            box-shadow: 0 4px 10px var(--shadow);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            transition: all 0.3s ease; /* Smooth transition */
+        }
+
+        .user-id-container:hover {
+            transform: scale(1.03); /* Slight zoom */
+            box-shadow: 0 8px 20px var(--shadow); /* Deeper shadow on hover */
+            background: rgba(26, 26, 26, 0.8); /* Slightly darker background */
+        }
+
+        .user-id-container h2 {
+            color: var(--teal-lighter);
+            margin-bottom: 20px;
+            font-size: 30px;
+        }
+
+        .user-info {
+            color: white;
+            font-size: 18px;
+            text-align: left;
+            width: 100%;
+            max-width: 500px;
+            line-height: 2;
+            padding: 0 20px;
+        }
+
+        .user-info p {
+            margin: 10px 0;
+        }
+
+        .user-info span {
+            color: var(--teal-lighter);
+            font-weight: bold;
+        }
+
+        .back-link {
+            margin-top: 20px;
+            color: var(--teal-lighter);
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 16px;
+        }
+
+        .back-link:hover {
+            text-decoration: underline;
+        }
+    </style>
+
+
+
+</head>
+<body>
+<!-- Navbar -->
+<nav class="navbar">
+    <div class="navbar-logo">
+        <a href="index.html">
+            <img src="Images/logo.svg" alt="Fraud Sentry Logo" />
+        </a>
+    </div>
+
+    <ul class="navbar-links">
+        <li><a href="index.html#about-us">About Us</a></li>
+        <li><a href="index.html#crime-rates">Crime Rates</a></li>
+        <li><a href="index.html#analysis">Analysis</a></li>
+        <li><a href="index.html#current-affairs">Current Affairs</a></li>
+        <li><a href="index.html#learning-corner">Learning Corner</a></li>
+    </ul>
+</nav>
+
+<!-- Menu toggle -->
+<input type="checkbox" id="menu-toggle">
+<label for="menu-toggle" class="toggle">
+    <span class="common top_line"></span>
+    <span class="common middle_line"></span>
+    <span class="common bottom_line"></span>
+</label>
+
+<!-- Slide‑out menu -->
+<div class="slide">
+    <h1>MENU</h1>
+    <ul>
+        <li><a href="User_id.html">User ID</a></li>
+        <li><a href="hours_spent.html">Hours Spent</a></li>
+        <li><a href="crime_ratio.html">Crime Ratio</a></li>
+        <li><a href="currrent_affairs.html">Current Affairs</a></li>
+        <li><a href="help_desk.html">Help Desk</a></li>
+        <li><a href="feedback.html">Feedback</a></li>
+        <li><a href="invite_friends.html">Invite a Friend</a></li>
+        <li><a href="#" onclick="logout()">Log Out</a></li>
+
+    </ul>
+</div>
+
+
+<div class="user-id-container">
+    <h2>Your User ID Details</h2>
+    <div class="user-info" id="userInfoContainer">
+        <!-- Loading skeleton -->
+        <div class="loading-skeleton">
+            <p><span></span> <span class="loading-bar"></span></p>
+            <p><span></span> <span class="loading-bar"></span></p>
+            <p><span></span> <span class="loading-bar"></span></p>
+            <p><span></span> <span class="loading-bar"></span></p>
+            <p><span></span> <span class="loading-bar"></span></p>
+            <p><span></span> <span class="loading-bar"></span></p>
+        </div>
+    </div>
+
+    <a class="back-link" href="index.html">← Back to Dashboard</a>
+</div>
+
+
+<script>
+    window.onload = async () => {
+        const res = await fetch('/api/user', {
+            method: 'GET',
+            credentials: 'include' // 👈 VERY IMPORTANT
+        });
+        if (res.ok) {
+            const user = await res.json();
+            const userInfo = document.getElementById('userInfoContainer');
+            userInfo.innerHTML = `
+            <p><span>Full Name:</span> ${user.full_name}</p>
+            <p><span>Email:</span> ${user.email}</p>
+        `;
+        } else {
+            window.location.href = 'signin.html'; // if not logged in, redirect
+        }
+    };
+</script>
+
+<script>
+    function logout() {
+        fetch('/api/logout', {
+            method: 'POST',
+            credentials: 'include'
+        }).then(response => {
+            if (response.ok) {
+                window.location.href = '/signin.html'; // Go to Sign In page after logout
+            } else {
+                alert('Logout failed');
+            }
+        }).catch(error => {
+            console.error('Logout error', error);
+            alert('Logout error');
+        });
+    }
+</script>
+
+
+</body>
+</html>

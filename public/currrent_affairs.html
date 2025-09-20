@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Fraud Sentry - Current Affairs</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <style>
+        html {
+            font-size: 16px;
+        }
+
+        .affairs-container {
+            width: 90%;
+            max-width: 900px;
+            margin: 6rem auto 3rem;
+            padding: 2rem;
+            background-color: rgba(0,0,0,0.7);
+            border-radius: 30px;
+            box-shadow: 0 0 15px rgba(32, 33, 33, 0.5);
+            color: white;
+        }
+
+        .affairs-container h2 {
+            color:var(--teal-lighter) ; /* Accent color updated */
+            margin-bottom: 1.5rem;
+            text-align: center;
+            font-size: 1.8rem;
+        }
+
+        .affair-card {
+            background-color: rgba(0,0,0, 0.6); /* Transparent dark background */
+            padding: 1.5rem;
+            border-radius: 30px;
+            margin-bottom: 1.5rem;
+            border-left: 5px solid var(--teal-lighter); /* Accent color applied */
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            transition: all 0.3s ease-in-out;
+            backdrop-filter: blur(30px); /* Added blur effect */
+        }
+
+        .affair-card:hover {
+            transform: scale(1.02);
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        .affair-card h3 {
+            color: var(--teal-lighter); /* Accent color for headings */
+            margin-bottom: 0.8rem;
+            font-size: 1.3rem;
+        }
+
+        .affair-card p {
+            color: #ccc;
+            margin-bottom: 1rem;
+            line-height: 1.6;
+        }
+
+        .affair-card a {
+            color: var(--teal-lighter); /* Accent color for links */
+            text-decoration: none;
+            font-size: 0.9rem;
+            display: inline-block;
+            margin-top: 0.5rem;
+        }
+
+        .affair-card a:hover {
+            text-decoration: underline;
+        }
+
+        @media (max-width: 768px) {
+            html {
+                font-size: 14px;
+            }
+
+            .affairs-container {
+                margin: 5rem auto 2rem;
+                padding: 1.5rem;
+            }
+
+            .affair-card {
+                padding: 1.2rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            html {
+                font-size: 13px;
+            }
+
+            .affairs-container {
+                margin: 4rem auto 2rem;
+                padding: 1rem;
+            }
+
+            .affair-card {
+                padding: 1rem;
+            }
+
+            .affair-card h3 {
+                font-size: 1.2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+<!-- Navbar -->
+<nav class="navbar">
+    <div class="navbar-logo">
+        <a href="index.html">
+            <img src="Images/logo.svg" alt="Fraud Sentry Logo" />
+        </a>
+    </div>
+
+    <ul class="navbar-links">
+        <li><a href="index.html#about-us">About Us</a></li>
+        <li><a href="index.html#crime-rates">Crime Rates</a></li>
+        <li><a href="index.html#analysis">Analysis</a></li>
+        <li><a href="index.html#current-affairs">Current Affairs</a></li>
+        <li><a href="index.html#learning-corner">Learning Corner</a></li>
+    </ul>
+</nav>
+
+<!-- Menu toggle -->
+<input type="checkbox" id="menu-toggle">
+<label for="menu-toggle" class="toggle">
+    <span class="common top_line"></span>
+    <span class="common middle_line"></span>
+    <span class="common bottom_line"></span>
+</label>
+
+<!-- Slide‑out menu -->
+<div class="slide">
+    <h1>MENU</h1>
+    <ul>
+        <li><a href="User_id.html">User ID</a></li>
+        <li><a href="hours_spent.html">Hours Spent</a></li>
+        <li><a href="crime_ratio.html">Crime Ratio</a></li>
+        <li><a href="currrent_affairs.html">Current Affairs</a></li>
+        <li><a href="help_desk.html">Help Desk</a></li>
+        <li><a href="feedback.html">Feedback</a></li>
+        <li><a href="invite_friends.html">Invite a Friend</a></li>
+        <li><a href="#" onclick="logout()">Log Out</a></li>
+
+    </ul>
+</div>
+
+<div class="affairs-container">
+    <h2>Current Affairs</h2>
+
+    <div class="affair-card">
+        <h3>RBI Warns of New UPI Fraud Scheme</h3>
+        <p>The Reserve Bank of India has alerted users about a growing scam where fake UPI payment requests are used to steal funds from unsuspecting users. Stay alert and verify all payment links before clicking.</p>
+        <a href="#">Read more</a>
+    </div>
+
+    <div class="affair-card">
+        <h3>Data Breach at Major Indian Bank</h3>
+        <p>A major private bank in India reported unauthorized access to its database, exposing personal data of nearly 2 million users. Cyber experts recommend regular password changes and 2FA use.</p>
+        <a href="#">Read more</a>
+    </div>
+
+    <div class="affair-card">
+        <h3>Government Launches Digital Hygiene Campaign</h3>
+        <p>The Ministry of IT has launched a nationwide initiative to educate students and professionals on secure online practices and avoiding phishing traps.</p>
+        <a href="#">Read more</a>
+    </div>
+
+    <div class="affair-card">
+        <h3>WhatsApp Users Targeted in OTP Scam</h3>
+        <p>Cybercriminals are tricking users into sharing OTPs under the guise of account verification. Never share OTPs, even with friends or known contacts.</p>
+        <a href="#">Read more</a>
+    </div>
+
+    <div class="affair-card">
+        <h3>New AI Tool Detects Phishing Emails</h3>
+        <p>Researchers have developed an AI-powered system that flags phishing attempts with 96% accuracy. The tool may soon be integrated into popular email platforms.</p>
+        <a href="#">Read more</a>
+    </div>
+</div>
+
+<script>
+    function toggleTheme() {
+        document.body.classList.toggle('dark-mode');
+    }
+</script>
+<script>
+    function logout() {
+        fetch('/api/logout', {
+            method: 'POST',
+            credentials: 'include'
+        }).then(response => {
+            if (response.ok) {
+                window.location.href = '/signin.html'; // Go to Sign In page after logout
+            } else {
+                alert('Logout failed');
+            }
+        }).catch(error => {
+            console.error('Logout error', error);
+            alert('Logout error');
+        });
+    }
+</script>
+
+
+
+</body>
+</html>

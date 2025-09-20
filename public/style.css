@@ -1,0 +1,617 @@
+/* Import Inter font */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
+/* Teal Palette */
+:root {
+    --teal-dark:    #004d4d;
+    --teal:         #007575;
+    --teal-light:   #33a1a1;
+    --teal-lighter:#b3e5e5;
+    --white:        #ffffff;
+    --shadow:       rgba(0, 0, 0, 0.1);
+    --text-dark:    #022c2c;
+}
+
+/* Reset & Base */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Inter', sans-serif;
+}
+
+html, body {
+    margin: 0;
+    padding: 0;
+    scroll-behavior: smooth;
+}
+
+body {
+    margin: 0;
+    /* White circle in the center fading to teal */
+    background: radial-gradient(circle, var(--teal-lighter), var(--white));
+    background-size: 400% 400%;
+    animation: gradientShift 8s ease infinite;
+    min-height: 100vh;
+    font-family: 'Inter', sans-serif;
+    padding-top:80px;
+}
+
+
+
+
+/* Navbar */
+.navbar {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%;
+    background: rgba(0, 0, 0, 0.6);
+    backdrop-filter: blur(70px);
+    display: flex;
+    align-items: center;
+    padding: 10px 40px;
+    height: 90px;
+    z-index: 1000;
+    transition: background-color 0.3s, backdrop-filter 0.3s;
+}
+.navbar-logo img {
+    width: 75%; height: auto;
+    transition: transform 0.3s;
+}
+.navbar-logo img:hover { transform: scale(1.04); }
+
+.navbar-links {
+    list-style: none;
+    display: flex;
+    margin-left: auto; margin-right: 50px;
+    gap: 20px;
+}
+/* Menu links hover effect */
+.navbar-links a {
+    color: var(--white);
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 18px;
+    padding: 10px 15px;
+    position: relative;
+    transition: all 0.3s ease; /* Smooth transition for all properties */
+    border-radius: 4px;
+    display: inline-block;
+}
+
+/* Hover effect for larger menu links */
+.navbar-links a:hover {
+    background: rgba(255, 255, 255, 0.2);
+    color: var(--white); /* Ensures text remains visible */
+    transform: scale(1.1); /* Uniform scale-up effect */
+    transition: transform 0.3s ease, background-color 0.3s ease; /* Smooth animation */
+}
+
+
+/* Hide the checkbox */
+#menu-toggle {
+    display: none;
+}
+
+/* Style the hamburger button */
+.toggle {
+    position: fixed; /* fixed to screen, not tied to navbar */
+    top: 33px;       /* distance from top */
+    right: 20px;     /* distance from right */
+    z-index: 4000;   /* High value to make sure it's on top */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 30px;
+    height: 22px;
+    cursor: pointer;
+}
+
+/* Style for the three lines of the hamburger */
+.common {
+    width: 100%;
+    height: 4px;
+    background-color: #b3e5e5;
+    border-radius: 2px;
+}
+
+.top_line    { top: 25%; left: 50%; transform: translate(-50%,-50%); }
+.middle_line { top: 50%; left: 50%; transform: translate(-50%,-50%); }
+.bottom_line { top: 75%; left: 50%; transform: translate(-50%,-50%); }
+#menu-toggle:checked + .toggle .top_line    { transform: translate(-50%,-50%) rotate(45deg); }
+#menu-toggle:checked + .toggle .middle_line { opacity: 0; }
+#menu-toggle:checked + .toggle .bottom_line { transform: translate(-50%,-50%) rotate(-45deg); }
+
+/* Slide-out menu styles */
+.slide {
+    position: fixed;
+    top: 0;
+    right: -250px; /* Initially hidden off-screen */
+    width: 250px;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(5px);
+    color: #d6f9f9;
+    padding: 20px;
+    box-shadow: -2px 0 10px rgba(0, 0, 0, 0.5);
+    z-index: 1000;
+    transition: right 0.5s cubic-bezier(0.77, 0, 0.175, 1);
+}
+
+/* When the checkbox is checked, slide the menu in */
+#menu-toggle:checked + label + .slide {
+    right: 0;
+}
+
+/* Slide menu items */
+.slide ul {
+    padding-bottom: 30px;
+    top: 60px;
+    list-style: none;
+    padding-top: 50px;
+    text-align: left;
+    padding-left: 5px;
+}
+
+.slide ul li {
+    padding-left:20px;
+    top: 40px;
+    margin: 15px 0;
+}
+
+/* Menu links hover effect */
+.slide ul li a {
+    color: white;
+    text-decoration: none;
+    font-size: 18px;
+    padding: 10px;
+    transition: all 0.3s ease; /* Smooth transition for all properties */
+    border-radius: 4px;
+}
+
+/* Apple-inspired hover effect */
+.slide ul li a:hover {
+    background: rgba(255, 255, 255, 0.2);
+    color: var(--white); /* Ensures text remains visible */
+    transform: scale(1.1); /* Uniform scale-up effect */
+    transition: transform 0.3s ease, background-color 0.3s ease; /* Smooth animation */
+}
+
+.slide.h1 {
+    top:70px;
+    color: #d6f9f9;;
+    font-size: 24px;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    text-align: center;
+}
+
+/* Styles for the menu toggle button */
+.toggle {
+    display: flex;
+    flex-direction: column;
+    cursor: pointer;
+    justify-content: space-between;
+    width: 30px;
+    height: 20px;
+}
+
+.common {
+    width: 100%;
+    height: 4px;
+    background-color: #d6f9f9;
+    border-radius: 2px;
+}
+
+.toggle:hover .common {
+    background-color: #d6f9f9; /* lighter cyan on hover */
+    transition: all 0.3s ease;
+}
+#menu-toggle:checked + .toggle .top_line {
+    transform: rotate(45deg) translate(5px, 5px);
+}
+
+#menu-toggle:checked + .toggle .middle_line {
+    opacity: 0;
+}
+
+#menu-toggle:checked + .toggle .bottom_line {
+    transform: rotate(-45deg) translate(5px, -5px);
+}
+
+
+/* Sections */
+section {
+    padding: 100px 20px 40px;
+    scroll-margin-top: 80px;
+    background-color: transparent;
+    text-align: center;
+    margin-top: 80px;
+}
+
+.dashboard-section { /* very light white, transparent */
+    /* for Safari support */
+    padding: 2rem;
+    margin: 2rem;
+}
+
+
+.dashboard-section h2 {
+    color: #224e4e;
+    font-size: 2.5rem; /* Larger header */
+    margin-bottom: 1rem;
+}
+
+.dashboard-section p {
+    max-width: 800px;
+    font-size: 1.2rem; /* Larger paragraph */
+    margin: auto auto 2rem;
+}
+
+/* Grids */
+#about-us-grid,
+#current-affairs-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    padding: 2rem;
+    max-width: 1200px;
+    margin: auto;
+    justify-items: center; /* Center items in the grid */
+}
+
+/* Cards */
+.card {
+    opacity: 0;
+    transform: translateY(50px);
+    transition: opacity 0.8s ease, transform 0.8s ease;
+    background: rgba(0,0,0,0.4);
+    backdrop-filter: blur(50px);
+    border-radius: 30px;
+    padding: 2rem;
+    box-shadow: 0 4px 10px var(--shadow);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+.card.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.card:hover {
+    transform: translateY(-5px) scale(1.04); /* slight lift and zoom */
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.4); /* bigger, darker shadow */
+    transition: transform 0.4s ease, box-shadow 0.4s ease;
+    background: rgba(0,0,0,0.6)
+}
+
+.card h3 {
+    color: var(--teal-lighter);
+    font-size: 1.5rem; /* Larger card heading */
+    margin-bottom: 1.5rem;
+}
+
+.card p {
+    color: white;
+    font-size: 1.2rem; /* Larger card text */
+    line-height: 1.6;
+}
+
+/* Images & Buttons */
+.about-img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 8px;
+    margin-bottom: 1rem;
+}
+
+.sign-in-button {
+    margin-top: 1rem;
+    padding: 10px 20px;
+    background: var(--teal-dark);
+    color: var(--white);
+    text-decoration: none;
+    border-radius: 6px;
+    font-weight: 600;
+    font-size: 1.1rem; /* Larger button text */
+    transition: background 0.3s, box-shadow 0.3s;
+}
+
+.sign-in-button:hover {
+    background: var(--teal);
+    box-shadow: 0 4px 8px var(--shadow);
+}
+
+/* Analysis Chart */
+
+.analysis-container {
+    position: relative;
+    width: 90%;
+    max-width: 800px;
+    margin: 120px auto;
+    border-radius: 30px;
+    overflow:visible;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+}
+
+/* Ensure the canvas takes the full height and width */
+.analysis-container canvas {
+    padding:20px;
+    background-color: rgba(0,0,0,0.5);
+    color: var(--teal-lighter);
+    backdrop-filter: blur(100px);
+    transition: opacity 0.8s ease, transform 0.8s ease;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height of its container */
+    object-fit: contain; /* Ensure the chart fits without stretching */
+    border-radius: 30px;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5);
+}
+.analysis-container h2 {
+    color: var(--teal-lighter);
+    margin-bottom: 20px;
+    font-size: 28px;
+}
+.analysis-container canvas:hover{
+
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.7);
+    transition: transform 0.4s ease, box-shadow 0.4s ease;
+    transform: translateY(-5px) scale(1.04);
+}
+/* Responsive Tweaks */
+@media (max-width: 900px) {
+    .navbar-links { display: none; }
+}
+
+@media (max-width: 600px) {
+    .navbar {
+        flex-direction: column;
+        padding: 20px;
+        height: auto;
+    }
+    .toggle {
+        width: 45px;
+        height: 45px;
+    }
+    .slide {
+        width: 220px;
+    }
+    .navbar-logo img {
+        width: 150px;
+    }
+    html {
+        font-size: 16px; /* Slight increase for mobile readability */
+    }
+}
+
+/* About Us Slider */
+.about-slider {
+    position: relative;
+    max-width: 800px;
+    margin: 2rem auto;
+    min-height: 450px;
+}
+
+/* Base About Cards */
+.about-card {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 450px;
+    opacity: 0;
+    transform: scale(0.98);
+    transition: opacity 0.8s ease, transform 0.8s ease;
+    background: rgba(0,0,0,0.4);
+    color: var(--teal-lighter);
+    backdrop-filter: blur(50px);
+    border-radius: 30px;
+    padding: 2rem;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.7);
+    text-align: center;
+    pointer-events: none; /* Prevent clicks on hidden slides */
+    bottom: 5px;
+    font-size: 1.5rem;
+    font-weight: 100;
+}
+.about-card.h3{
+    align-self:center;
+    margin-bottom: 1rem;
+    color:var(--teal-lighter);
+}
+.about-card p{
+    top:5px;
+    font-size: 1.2rem;
+    line-height: 1;
+    color:var(--white);
+}
+
+/* Active card */
+.about-card.active {
+    opacity: 1;
+    transform: scale(1);
+    pointer-events: auto; /* Allow click */ /* Bring active to flow */
+}
+
+/* Dots */
+.dot-container {
+    text-align: center;
+    margin-top: 1rem;
+}
+
+.dot {
+    height: 15px;
+    width: 15px;
+    margin: 0 5px;
+    background-color: var(--teal-light);
+    border-radius: 50%;
+    display: inline-block;
+    transition: background-color 0.3s ease;
+    cursor: pointer;
+}
+
+.active-dot {
+    background-color: var(--teal-dark);
+}
+
+/* About Us Images */
+.about-img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 15px;
+    margin-bottom: 1rem;
+}
+.about-card {
+    transition: opacity 2s ease;
+}
+
+/* Fallback for older browsers without backdrop-filter */
+@supports not (backdrop-filter: blur(20px)) {
+    .slide {
+        background: rgba(0, 0, 0, 0.6); /* Simple background without blur */
+    }
+}
+@keyframes gradientShift {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+
+
+.video-cards-container {
+    display: flex;
+    flex-direction: row;
+    max-height: 1000px;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 20px;
+    margin-top: 20px;
+    justify-content:  center;
+}
+
+.video-card {
+    display: grid;
+    height: 600px;
+    width: 350px;
+    transform: scale(0.98);
+    transition: opacity 0.8s ease, transform 0.8s ease;
+    background: rgba(0,0,0,0.6);
+    color: var(--teal-lighter);
+    backdrop-filter: blur(50px);
+    border-radius: 30px;
+    overflow: hidden;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.5);
+    padding: 20px;
+    align-items: center;
+}
+
+.video-card:hover {
+    transform: translateY(-10px);
+    background: rgba(0,0,0,0.7);
+    backdrop-filter: blur(50px);
+}
+
+.video-thumbnail {
+    position: relative;
+    overflow: hidden;
+    width: 100%;
+    height: 100%;
+    border-radius: 15px;
+    margin-bottom: 10px;
+    background-color: transparent;
+}
+
+.video-thumbnail img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+.video-thumbnail video {
+    width: 100%; /* Ensure the video spans the full width */
+    height: 100%; /* Ensure the video spans the full height */
+    object-fit: cover; /* Makes sure the video covers the entire space without distortion */
+    border-radius: 10px;
+}
+
+.play-button {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: rgba(0, 0, 0, 0.6);
+    border-radius: 50%;
+    padding: 10px;
+    cursor: pointer;
+}
+
+.play-button img {
+    width: 30px;
+    height: 30px;
+    filter: invert(1);
+}
+
+.video-card h3 {
+    color: var(--teal-lighter);
+    font-size: 1.3rem;
+    margin-top: 15px;
+}
+
+.video-card p {
+    color: white;
+    font-size: 1rem;
+    margin: 10px 0;
+}
+
+.video-link {
+    text-decoration: none;
+    color: #007bff;
+    font-weight: bold;
+}
+
+.video-link:hover {
+    text-decoration: underline;
+}
+
+#crime-rates {
+    padding: 80px 20px 40px;
+    background-color: transparent;
+    margin-top: 80px;
+    text-align: center;
+    display: flex;
+    flex-direction: column; /* Ensures vertical stacking */
+    align-items: center; /* Centers the cards horizontally */
+}
+
+#crime-rates card {
+    display: block; /* Stack cards vertically */
+    width: 100%; /* Make each card take full width */
+    max-width: 350px; /* Limit width for better control */ /* Space between cards */
+    padding-bottom: 20px;
+    background: rgba(0, 0, 0, 0.4);
+    backdrop-filter: blur(50px);
+    border-radius: 30px;
+    box-shadow: 0 4px 10px var(--shadow);
+    transition: transform 0.4s ease, box-shadow 0.4s ease;
+    opacity: 0;
+    transform: translateY(50px);
+    text-align: center;
+}
+
+/* Hover effect for cards */
+#crime-rates card:hover {
+    transform: translateY(-5px) scale(1.04);
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.4);
+    background: rgba(0, 0, 0, 0.6);
+}
+
+/* Make cards visible when they come into view (optional scroll effect) */
+#crime-rates card.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+

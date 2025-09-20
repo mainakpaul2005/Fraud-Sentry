@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fraud Sentry - Sign In</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .signup-container {
+            width: 400px;
+            margin: 120px auto;
+            padding: 30px;
+            background-color: rgba(0,0,0,0.5);
+            backdrop-filter: blur(30px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+            border-radius: 30px;
+            box-shadow: 0 0 15px rgba(0,0,0,0.5);
+            text-align: center;
+        }
+        .signup-container:hover{
+            background-color: rgba(0,0,0, 0.6);
+            box-shadow: 0 12px 24px rgba(0, 0, 0, 0.25);
+            transform: translateY(-5px) scale(1.04);
+            transition: transform 0.4s ease, box-shadow 0.4s ease;
+        }
+
+        .signup-container h2 {
+            color: var(--teal-lighter);
+            margin-bottom: 20px;
+        }
+
+        .signup-container form input {
+            width: 100%;
+            padding: 12px 15px;
+            margin: 10px 0;
+            border: none;
+            border-radius: 5px;
+            background-color: #333;
+            color: white;
+            font-size: 14px;
+        }
+
+        .signup-container form input::placeholder {
+            color: #aaa;
+        }
+
+        .signup-container button {
+            width: 100%;
+            padding: 12px;
+            background-color: var(--teal);
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-weight: 600;
+            cursor: pointer;
+            margin-top: 10px;
+            transition: background-color 0.3s ease;
+        }
+
+        .signup-container button:hover {
+            background-color: var(--teal-dark);
+        }
+
+        .footer-text {
+            color: white;
+            margin-top: 15px;
+        }
+
+        .footer-text a {
+            color: var(--teal-lighter);
+            text-decoration: none;
+        }
+
+        .footer-text a:hover {
+            text-decoration: underline;
+        }
+
+        @media (max-width: 768px) {
+            .signup-container {
+                margin: 80px auto;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .signup-container {
+                margin: 40px auto;
+            }
+        }
+    </style>
+</head>
+<body>
+<!-- Navbar -->
+<nav class="navbar">
+    <div class="navbar-logo">
+        <a href="index.html">
+            <img src="Images/logo.svg" alt="Fraud Sentry Logo" />
+        </a>
+    </div>
+
+    <ul class="navbar-links">
+        <li><a href="index.html#about-us">About Us</a></li>
+        <li><a href="index.html#crime-rates">Crime Rates</a></li>
+        <li><a href="index.html#analysis">Analysis</a></li>
+        <li><a href="index.html#current-affairs">Current Affairs</a></li>
+        <li><a href="index.html#learning-corner">Learning Corner</a></li>
+    </ul>
+</nav>
+
+<!-- Menu toggle -->
+<input type="checkbox" id="menu-toggle">
+<label for="menu-toggle" class="toggle">
+    <span class="common top_line"></span>
+    <span class="common middle_line"></span>
+    <span class="common bottom_line"></span>
+</label>
+
+<!-- Slide‑out menu -->
+<div class="slide">
+    <h1>MENU</h1>
+    <ul>
+        <li><a href="User_id.html">User ID</a></li>
+        <li><a href="hours_spent.html">Hours Spent</a></li>
+        <li><a href="crime_ratio.html">Crime Ratio</a></li>
+        <li><a href="currrent_affairs.html">Current Affairs</a></li>
+        <li><a href="help_desk.html">Help Desk</a></li>
+        <li><a href="feedback.html">Feedback</a></li>
+        <li><a href="invite_friends.html">Invite a Friend</a></li>
+        <li><a href="#" onclick="logout()">Log Out</a></li>
+
+    </ul>
+</div>
+
+<div class="signup-container">
+    <h2>Fraud Sentry - Sign In</h2>
+    <form id="signinForm">
+        <input type="email" name="email" placeholder="Email Address" required>
+        <input type="password" name="password" placeholder="Password" required>
+        <button type="submit">Sign In</button>
+    </form>
+    <p class="footer-text">Don't have an account? <a href="signup.html" id="signupLink">Sign Up</a></p>
+</div>
+<script>
+    const signinForm = document.getElementById('signinForm');
+    if (signinForm) {
+        signinForm.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const formData = new FormData(signinForm);
+            const email = formData.get('email');
+            const password = formData.get('password');
+
+            const response = await fetch('/api/signin', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ email, password }),
+                credentials: 'include'
+            });
+
+            if (response.ok) {
+                window.location.href = 'index.html'; // Redirect to home page
+            } else {
+                alert('Invalid login credentials');
+            }
+        });
+    }
+</script>
+</body>
+</html>

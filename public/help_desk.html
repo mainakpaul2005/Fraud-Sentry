@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fraud Sentry - Help Desk</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        /* Define the custom variable for lighter teal */
+
+
+        .help-container {
+            width: 500px;
+            margin: 120px auto;
+            padding: 30px;
+            background-color: rgba(26, 26, 26, 0.7); /* Semi-transparent dark background */
+            border-radius: 30px;
+            box-shadow: 0 0 15px rgba(0,0,0, 0.5);
+            color: white;
+            text-align: center;
+            backdrop-filter: blur(30px); /* Increased blur effect to 30px */
+        }
+        .help-container:hover{
+            background-color: rgba(26, 26, 26, 0.8);
+            transform: translateY(-5px) scale(1.04);
+            transition: all 0.3s;
+        }
+        .help-container h2 {
+            color: var(--teal-lighter); /* Accent color updated */
+            margin-bottom: 20px;
+        }
+
+        .help-container form textarea,
+        .help-container form input {
+            width: 100%;
+            padding: 12px;
+            margin: 10px 0;
+            border: none;
+            border-radius: 5px;
+            background-color: #333;
+            color: white;
+            font-size: 14px;
+        }
+
+        .help-container textarea {
+            resize: vertical;
+            height: 100px;
+        }
+
+        .help-container button {
+            width: 100%;
+            padding: 12px;
+            background-color: #5cb8b8; /* Accent color for button */
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-weight: 600;
+            cursor: pointer;
+            margin-top: 10px;
+            transition: background-color 0.3s ease;
+        }
+
+        .help-container button:hover {
+            background-color: #52a1a1; /* Slightly darker teal for hover effect */
+        }
+
+        .confirmation-message {
+            margin-top: 15px;
+            color: #00ffcc;
+            font-weight: bold;
+        }
+
+        @media (max-width: 768px) {
+            .help-container {
+                margin: 80px auto;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .help-container {
+                margin: 40px auto;
+            }
+        }
+    </style>
+</head>
+<!-- Light teal background -->
+
+<!-- Navbar -->
+<nav class="navbar">
+    <div class="navbar-logo">
+        <a href="index.html">
+            <img src="Images/logo.svg" alt="Fraud Sentry Logo" />
+        </a>
+    </div>
+
+    <ul class="navbar-links">
+        <li><a href="index.html#about-us">About Us</a></li>
+        <li><a href="index.html#crime-rates">Crime Rates</a></li>
+        <li><a href="index.html#analysis">Analysis</a></li>
+        <li><a href="index.html#current-affairs">Current Affairs</a></li>
+        <li><a href="index.html#learning-corner">Learning Corner</a></li>
+    </ul>
+</nav>
+
+<!-- Menu toggle -->
+<input type="checkbox" id="menu-toggle">
+<label for="menu-toggle" class="toggle">
+    <span class="common top_line"></span>
+    <span class="common middle_line"></span>
+    <span class="common bottom_line"></span>
+</label>
+
+<!-- Slide‑out menu -->
+<div class="slide">
+    <h1>MENU</h1>
+    <ul>
+        <li><a href="User_id.html">User ID</a></li>
+        <li><a href="hours_spent.html">Hours Spent</a></li>
+        <li><a href="crime_ratio.html">Crime Ratio</a></li>
+        <li><a href="currrent_affairs.html">Current Affairs</a></li>
+        <li><a href="help_desk.html">Help Desk</a></li>
+        <li><a href="feedback.html">Feedback</a></li>
+        <li><a href="invite_friends.html">Invite a Friend</a></li>
+        <li><a href="#" onclick="logout()">Log Out</a></li>
+
+    </ul>
+</div>
+
+<div class="help-container">
+    <h2>Need Assistance?</h2>
+    <form id="helpForm">
+        <input type="text" name="name" placeholder="Your Name" required />
+        <input type="email" name="email" placeholder="Your Email" required />
+        <textarea name="message" placeholder="Describe your issue or question..." required></textarea>
+        <button type="submit">Submit</button>
+    </form>
+    <div class="confirmation-message" id="confirmationMessage" style="display: none;">
+        Your request has been submitted. We will get back to you shortly.
+    </div>
+</div>
+
+<script>
+    function toggleTheme() {
+        document.body.classList.toggle('dark-mode');
+    }
+
+    document.getElementById('helpForm').addEventListener('submit', function (e) {
+        e.preventDefault();
+        const confirmation = document.getElementById('confirmationMessage');
+        confirmation.style.display = 'block';
+        this.reset();
+
+        // Optional: Send data to backend
+        // const formData = new FormData(this);
+        // fetch('/help', {
+        //     method: 'POST',
+        //     body: formData
+        // });
+    });
+</script>
+<script>
+    function logout() {
+        fetch('/api/logout', {
+            method: 'POST',
+            credentials: 'include'
+        }).then(response => {
+            if (response.ok) {
+                window.location.href = '/signin.html'; // Go to Sign In page after logout
+            } else {
+                alert('Logout failed');
+            }
+        }).catch(error => {
+            console.error('Logout error', error);
+            alert('Logout error');
+        });
+    }
+</script>
+
+
+
+</body>
+</html>
