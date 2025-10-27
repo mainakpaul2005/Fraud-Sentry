@@ -95,12 +95,6 @@ The project is built using a minimal Node.js server with standard front-end tech
 
 -----
 
-## ⚠️ Security Warning & Future Development
-
-**Critical Security Requirement:** The current implementation of `/api/signin` and `/api/signup` in `server.js` **does not use password hashing**, storing passwords in plain text.
-
-**IMMEDIATE FIX REQUIRED:** Implement the `bcryptjs` package (already listed as a dependency) to securely hash and compare passwords before any production deployment.
-
 ### Development Roadmap
 
   * Implement password hashing using `bcryptjs`.
